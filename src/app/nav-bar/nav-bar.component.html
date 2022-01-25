@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">{{ 'nav-bar.home' | translate }}</a></li>
+        <li *ngIf="authGuard.isAdmin()"><a routerLink="/clients" routerLinkActive="active">{{ 'nav-bar.clients' | translate }}</a></li>
+        <li *ngIf="authGuard.isUser()"><a routerLink="/clients/details/{{authGuard.getId()}}" routerLinkActive="active">{{ 'nav-bar.profile' | translate }}</a></li>
+        <li *ngIf="authGuard.isUser()"><a routerLink="/clients/{{authGuard.getId()}}/payments" routerLinkActive="active">{{ 'nav-bar.payments' | translate }}</a></li>
+        <li><a routerLink="/courses" routerLinkActive="active">{{ 'nav-bar.courses' | translate }}</a></li>
+        <li *ngIf="authGuard.isAdmin()"><a routerLink="/clientCourse" routerLinkActive="active">{{ 'nav-bar.clientCourse' | translate }}</a></li>
+    </ul>
+</nav>

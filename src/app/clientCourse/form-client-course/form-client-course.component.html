@@ -1,0 +1,86 @@
+<main>
+    <h2>{{formType == 0?('clientCourse-page.form.details.title' | translate) :formType == 1?('clientCourse-page.form.add.title' | translate):('clientCourse-page.form.edit.title' | translate)}}</h2>
+    <form class="form" [formGroup]="clientCourseForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" name="idClientCourse" formControlName="idClientCourse">
+
+        <label for="client">{{'clientCourse.fields.client' | translate}}: <span class="symbol-required">*</span></label>
+        <select name="idClient" id="client" formControlName="idClient">
+            <option *ngIf="formType == 0;else otherClient" value="">{{clientCourse.client.firstName + ' ' + clientCourse.client.lastName}}</option>
+            <ng-template #otherClient>
+                <option value="">{{'clientCourse-page.form.select.client' | translate}}</option>
+                <option *ngFor="let client of clients" value="{{client.id}}" label="{{client.firstName + ' ' + client.lastName}}" ></option>
+            </ng-template>
+        </select>
+        <span id="errorClient" class="errors-text" *ngIf="clientCourseForm.get('idClient')?.invalid && clientCourseForm.get('idClient')?.errors && (clientCourseForm.get('idClient')?.dirty || clientCourseForm.get('idClient')?.touched)">
+            <div *ngIf="clientCourseForm.get('idClient')?.hasError('required')">
+                {{'clientCourse-page.errors.client.required' | translate}}
+            </div>
+        </span>
+
+        <label for="course">{{'clientCourse.fields.course' | translate}}: <span class="symbol-required">*</span></label>
+        <select name="idCourse" id="course" formControlName="idCourse">
+            <option *ngIf="formType == 0;else otherCourse" value="">{{clientCourse.course.name}}</option>
+            <ng-template #otherCourse>
+                <option value="">{{'clientCourse-page.form.select.course' | translate}}</option>
+                <option *ngFor="let course of courses" value="{{course.id}}" label="{{course.name}}"></option>
+            </ng-template>
+        </select>
+        <span id="errorCourse" class="errors-text" *ngIf="clientCourseForm.get('idCourse')?.invalid && clientCourseForm.get('idCourse')?.errors && (clientCourseForm.get('idCourse')?.dirty || clientCourseForm.get('idCourse')?.touched)">
+            <div *ngIf="clientCourseForm.get('idCourse')?.hasError('required')">
+                {{'clientCourse-page.errors.course.required' | translate}}
+            </div>
+        </span>
+
+        <label for="dateJoining">{{'clientCourse.fields.dateJoining' | translate}}: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateJoining" id="dateJoining" formControlName="dateJoining">
+        <span id="errorDateJoining" class="errors-text" *ngIf="clientCourseForm.get('dateJoining')?.invalid && clientCourseForm.get('dateJoining')?.errors && (clientCourseForm.get('dateJoining')?.dirty || clientCourseForm.get('dateJoining')?.touched)">
+            <div *ngIf="clientCourseForm.get('dateJoining')?.hasError('required')">
+                {{'clientCourse-page.errors.dateJoining.required' | translate}}
+            </div>
+        </span>
+
+        <label for="getCertificate">{{'clientCourse.fields.certificate' | translate}}:</label>
+        <input type="checkbox" name="getCertificate" id="getCertificate" formControlName="getCertificate">
+        <span id="errorCertificate" class="errors-text">
+        </span>
+
+            <div class="" *ngIf="formType == 0;else otherForm">
+                <a routerLink="/clientCourse/edit/{{clientCourse.id}}" class="button-edit">{{'form.actions.edit' | translate}}</a>
+            </div>
+            <ng-template #otherForm>
+                <div class="form-buttons">
+                    <p id="errorsSummary"></p>
+                    <button type="submit" class="form-button-submit" [ngClass]="{'valid-form': clientCourseForm.valid}" [disabled]="clientCourseForm.invalid">
+                        {{formType == 1?('form.actions.btnLabel.add' | translate) : ('form.actions.btnLabel.save' | translate)}}
+                    </button> 
+                    <a routerLink="/clientCourse" class="form-button-cancel">{{'form.actions.cancel' | translate}}</a>
+                </div>
+            </ng-template>
+    </form>
+
+    <div *ngIf="formType == 0">
+        <h2>{{clientCourse.payments.length > 0? ('clientCourse-page.form.payments.title' | translate) : ('clientCourse-page.form.payments.noRecords' | translate) }}</h2>
+        <div class="table-form">
+            <table *ngIf="clientCourse.payments.length > 0" class="table-list">
+                <thead>
+                    <tr>
+                        <th>{{'payment.fields.amount' | translate}}</th>
+                        <th>{{'payment.fields.date' | translate}}</th>
+                        <th>{{'payment.fields.status' | translate}}</th>
+                        <th>{{'payment.fields.method' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let payment of clientCourse.payments">
+                            <td>{{payment.amount}}</td>
+                            <td>{{payment.date}}</td>
+                            <td>{{ ('payment.fields.paymentStatus.' + this.paymentStatusEnum[payment.paymentStatus.id]) | translate }}</td>
+                            <td>{{ ('payment.fields.paymentMethod.' + this.paymentMethodEnum[payment.paymentMethod.id]) | translate }}</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <a routerLink="/clientCourse" class="button-return">{{'form.actions.return' | translate}}</a>
+    </div>
+
+</main>

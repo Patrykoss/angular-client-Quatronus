@@ -1,0 +1,44 @@
+<main>
+    <h2>{{ 'course-page.list.title' | translate }}</h2>
+    <div class="tpc" *ngIf="courses.length > 0;else noCourses">
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>{{ 'course.fields.name' | translate }}</th>
+                    <th>{{ 'course.fields.startDate' | translate }}</th>
+                    <th>{{ 'list.actions.title' | translate }}</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let course of courses">
+                <td class="{{getLang()}}">{{course.name}}</td>
+                <td class="{{getLang()}}">{{course.startDate}}</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a routerLink="/courses/details/{{course.id}}" class="list-actions-button-details">
+                            <img alt="{{ 'list.actions.details' | translate }}" src="./../../../assets/images/info.png">
+                        </a>
+                    </li>
+                    <li *ngIf="authGuard.isAdmin()">
+                        <a routerLink="/courses/edit/{{course.id}}" class="list-actions-button-edit">
+                            <img alt="{{ 'list.actions.edit' | translate }}" src="./../../../assets/images/edit.png">
+                        </a>
+                    </li>
+                    <li *ngIf="authGuard.isAdmin()">
+                        <a (click)="askBeforeDelete(course)" class="list-actions-button-delete">
+                            <img alt="{{ 'list.actions.delete' | translate }}" src="./../../../assets/images/delete.png">
+                        </a>
+                    </li>
+                </ul>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <ng-template #noCourses>
+        <p>{{ 'list.noRecords' | translate }}</p>
+    </ng-template>
+    <a routerLink="/courses/add" class="button-add" *ngIf="authGuard.isAdmin()">{{ 'course-page.list.addNew' | translate }}</a>
+
+</main>

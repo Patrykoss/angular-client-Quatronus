@@ -1,0 +1,38 @@
+<header>
+    <h1>Quatronus</h1>
+    <img src='./../../assets/images/logo.png' alt="Quatronus Logo">
+
+
+    <div class="container">
+        <div class="language-picker-area">
+            <select (change) ="selectLanguage($event)" class="language-picker" [value]="lang">
+                <option value="pl-PL">Polski</option>
+                <option value="en-GB">English</option>
+            </select>
+        </div>
+        
+        <div class="auth" *ngIf="!authGuardService.isLoggedIn();else logged">
+            <a routerLink="/signIn"><button class="sign-in">{{'header.logIn' | translate}}</button></a>
+            <a routerLink="/register"><button class="register">{{'header.register' | translate}}</button></a> 
+        </div>
+        <ng-template #logged>
+            <div *ngIf="authGuardService.isUser(); else admin" class="role">
+                {{'header.user' | translate}}: 
+                <p class="user-name">{{authGuardService.getUserName()}} </p>
+            </div>
+            <ng-template #admin>
+                <span class="role">
+                    {{'header.admin' | translate}}
+                </span>
+            </ng-template>
+            <button (click)="logOut()" class="register">
+                {{'header.logOut' | translate}}
+            </button>
+        </ng-template>
+        
+        
+    </div>
+    
+    
+</header>
+    

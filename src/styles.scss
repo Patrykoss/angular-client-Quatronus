@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+
+html {
+  background-color: #212324;
+  font-family: sans-serif;
+}
+
+body {
+  min-width: 360px;
+}
+
+main {
+  background-color: #222a2f;
+  border-radius: 5px;
+}
+
+main {
+  margin: 1rem;
+}
+
+main {
+  padding: 1.5rem;
+}
+
+main h2 {
+  border-bottom: 1px solid #7f8c8d;
+  margin-bottom: 2rem;
+  color: #f6f6f6;
+}
+
+p {
+  color: #f6f6f6;
+}
+
+@media all and (max-width: 400px) {
+  body,
+  main {
+    margin: 0;
+  }
+
+  main {
+    margin-top: 1rem;
+  }
+}

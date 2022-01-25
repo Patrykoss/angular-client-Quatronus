@@ -1,0 +1,96 @@
+<main>
+    <h2>{{formType == 0?('course-page.form.details.title' | translate) :formType == 1?('course-page.form.add.title' | translate):('course-page.form.edit.title' | translate)}}</h2>
+        <form class="form" [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" name="id" formControlName="id">
+
+            <label for="name">{{ 'course.fields.name' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="name" id="name" [placeholder]="('course-page.form.placeholder.name' | translate)" formControlName="name" >
+            <span id="errorName" class="errors-text" *ngIf="courseForm.get('name')?.invalid && courseForm.get('name')?.errors && (courseForm.get('name')?.dirty || courseForm.get('name')?.touched)">
+                        <div *ngIf="courseForm.get('name')?.hasError('required')">
+                            {{'course-page.errors.name.required' | translate}}
+                        </div>
+                        <div *ngIf="courseForm.get('name')?.hasError('minlength')">
+                            {{'course-page.errors.name.length' | translate}}
+                        </div>
+                        <div *ngIf="courseForm.get('name')?.hasError('maxlength')">
+                            {{'course-page.errors.name.length' | translate}}
+                        </div>
+            </span>
+
+            <label for="description">{{ 'course.fields.description' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="description" id="description" [placeholder]="('course-page.form.placeholder.description' | translate)" formControlName="description"  > <!-- [(ngModel)]="course.description" -->
+            <span id="errorDescription" class="errors-text" *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.errors && (courseForm.get('description')?.dirty || courseForm.get('description')?.touched)">
+                <div *ngIf="courseForm.get('description')?.hasError('required')">
+                    {{'course-page.errors.description.required' | translate}}
+                </div>
+                <div *ngIf="courseForm.get('description')?.hasError('minlength')">
+                    {{'course-page.errors.description.length' | translate}}
+                </div>
+                <div *ngIf="courseForm.get('description')?.hasError('maxlength')">
+                    {{'course-page.errors.description.length' | translate}}
+                </div>
+            </span>
+
+            <label for="startDate">{{ 'course.fields.startDate' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="date" name="startDate" id="startDate" formControlName="startDate" > 
+            <span id="errorStartDate" class="errors-text" *ngIf="courseForm.get('startDate')?.invalid && courseForm.get('startDate')?.errors && (courseForm.get('startDate')?.dirty || courseForm.get('startDate')?.touched)">
+                <div *ngIf="courseForm.get('startDate')?.hasError('required')">
+                    {{'course-page.errors.startDate.required' | translate}}
+                </div>
+                <div *ngIf="courseForm.get('startDate')?.hasError('invalidStartDate')">
+                    {{'course-page.errors.startDate.invalid' | translate}}
+                </div>
+            </span>
+
+            <label for="endDate">{{ 'course.fields.endDate' | translate }}: </label>
+            <input type="date" name="endDate" id="endDate" formControlName="endDate" >
+            <span id="errorEndDate" class="errors-text" *ngIf="courseForm.touched || courseForm.dirty">
+                <div *ngIf="courseForm.hasError('invalidEndDate') && (courseForm.touched || courseForm.dirty)">
+                    {{'course-page.errors.endDate.after' | translate}}
+                </div>
+                <div *ngIf="courseForm.hasError('inv') && (courseForm.touched || courseForm.dirty)">
+                    {{'course-page.errors.endDate.invalid' | translate}}
+                </div>
+            </span>
+
+            <div class="form-buttons" *ngIf="formType == 0;else otherForm">
+                <a routerLink="/courses/edit/{{course?.id}}" class="button-edit" *ngIf="authGuard.isAdmin();else defaultRole">{{'form.actions.edit' | translate}}</a>
+                <ng-template #defaultRole> <a routerLink="/courses" class="button-return">{{'form.actions.return' | translate}}</a></ng-template>
+            </div>
+            <ng-template #otherForm>
+                <div class="form-buttons">
+                    <button type="submit" class="form-button-submit" [ngClass]="{'valid-form': courseForm.valid}" [disabled]="courseForm.invalid">
+                        {{formType == 1?('form.actions.btnLabel.add' | translate) : ('form.actions.btnLabel.save' | translate)}}
+                    </button>
+                    <a routerLink="/courses" class="form-button-cancel">{{'form.actions.cancel' | translate}}</a>
+                </div>
+            </ng-template>
+        </form>
+    <div *ngIf="formType == 0 && authGuard.isAdmin()">
+        <h2>{{course?.clientCourse? ('course-page.form.clients.title' | translate) : ('course-page.form.clients.noRecords' | translate) }}</h2>
+        <div class="table-form">
+            <table *ngIf="course?.clientCourse!.length > 0" class="table-list">
+                <thead>
+                    <tr>
+                        <th>{{ 'client.fields.firstName' | translate }}</th>
+                        <th>{{ 'client.fields.lastName' | translate }}</th>
+                        <th>{{ 'client.fields.phoneNumber' | translate }}</th>
+                        <th>{{ 'clientCourse.fields.dateJoining' | translate }}</th>
+                        <th>{{ 'clientCourse.fields.certificate' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let cc of course?.clientCourse">
+                            <td><a routerLink="/clients/details/{{cc.client.id}}">{{cc.client.firstName}}</a></td>
+                            <td>{{cc.client.lastName}}</td>
+                            <td>{{cc.client.phoneNumber}} </td>
+                            <td>{{cc.dateJoining}}</td>
+                            <td class="certificate-info"><input type="checkbox" name="certificate" [checked]="cc.getCertificate" disabled></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <a routerLink="/clientCourse/add" class="button-add-small" [queryParams]="{ idCourse: course?.id}" *ngIf="authGuard.isAdmin()"> {{'course-page.form.client.assign' | translate}} </a>
+        <a routerLink="/courses" class="button-return">{{'form.actions.return' | translate}}</a>
+    </div>
+</main>

@@ -1,0 +1,318 @@
+{
+    "nav-bar": {
+        "home": "Home page",
+        "clients": "Clients",
+        "courses": "Courses",
+        "clientCourse": "Records",
+        "profile": "Profile",
+        "payments": "Payments"
+    },
+    "header": {
+        "logIn": "Log in",
+        "register": "Register",
+        "logOut": "Log out",
+        "user": "User",
+        "admin": "Administrator"
+    },
+    "home-page": {
+        "title": "Home page"
+    },
+    "auth-page": {
+        "form": {
+            "title": "Register",
+            "password": "Password"
+        },
+        "errors": {
+            "password": {
+                "loggedIn": "Logged in",
+                "required": "Password is required",
+                "pattern": "Minimum eight characters, at least one letter and one number:"
+            },
+            "invalidCredentials": "Invalid credentials",
+            "unknown": "Unknown error"
+        },
+        "alerts": {
+            "loggedIn": "Logged in",
+            "registered": "Account created",
+            "unregistered": "Account not created"
+        }
+    },
+    "client-page": {
+        "list":{
+            "title": "Client list",
+            "addNew": "Add new client"
+        },
+        "form":{
+            "details": {
+                "title": "Client details"
+            },
+            "add": {
+                "title": "Add client"
+            },
+            "edit": {
+                "title": "Edit client"
+            },
+            "courses": {
+                "title": "Details of participation in the courses",
+                "noRecords": "No assigned courses"
+            },
+            "placeholder": {
+                "phoneNumber": "e.g. 662137997",
+                "email": "e.g. name@domain.pl"
+            },
+            "profile": {
+                "title": "Data"
+            },
+            "course": {
+                "assign": "Assign course"
+            }
+        },
+        "errors":{
+            "firstName": {
+                "required": "First name is required",
+                "length": "First name should be 2 to 20 characters long",
+                "pattern": "First name must consist of letters only"
+            },
+            "lastName": {
+                "required": "Last name is required",
+                "length": "Last name should be 2 to 20 characters long",
+                "pattern": "Last name must consist of letters only"
+            },
+            "phoneNumber": {
+                "required": "Phone number is required",
+                "pattern": "Phone number consists of 9 digits"
+            },
+            "email": {
+                "required": "Email is required",
+                "length": "Email should contain no more than 40 characters",
+                "pattern": "The field should contain a valid email",
+                "availability": "Selected email is busy"
+            },
+            "noRecord": "No client in the database",
+            "unknown": "Unknown error"
+        },
+        "alerts": {
+            "addedNew": "Client added",
+            "updated": "Client data updated",
+            "deleted": "Client deleted",
+            "questionDelete": "Are you sure you want to delete the record "
+        }
+    },
+    "client": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+            "phoneNumber": "Phone number",
+			"email": "Email"
+		}
+    },
+    "course-page": {
+        "list":{
+            "title": "Course list",
+            "addNew": "Add new course"
+        },
+        "form":{
+            "details": {
+                "title": "Course details"
+            },
+            "add": {
+                "title": "Add course"
+            },
+            "edit": {
+                "title": "Edit course"
+            },
+            "clients": {
+                "title": "List of course participants",
+                "noRecords": "No participants assigned"
+            },
+            "placeholder": {
+                "name": "2-70 characters",
+                "description": "10-200 characters"
+            },
+            "client": {
+                "assign": "Assign client"
+            }
+            
+        },
+        "errors":{
+            "name": {
+                "required": "Name is required",
+                "length": "Name of the course should be 2 to 20 characters long"
+            },
+            "description": {
+                "required": "Description is required",
+                "length": "Description of the course should be 10 to 200 characters long"
+            },
+            "startDate": {
+                "required": "Start date is required",
+                "invalid": "Start date must be after today's date"
+            },
+            "endDate": {
+                "after": "End date must be after the start date",
+                "invalid": "You must enter the start date first"
+            },
+            "noRecord": "There is no course in the database",
+            "unknown": "Unknown error"
+        },
+        "alerts": {
+            "addedNew": "Course added",
+            "updated": "Course data updated",
+            "deleted": "Course deleted",
+            "questionDelete": "Are you sure you want to delete the record "
+        }
+    },
+    "course": {
+		"fields": {
+			"name": "Name",
+			"description": "Description",
+            "startDate": "Start date",
+			"endDate": "End date"
+		}
+    },
+    "clientCourse-page": {
+        "list":{
+            "title": "List of clients enrolled in the courses",
+            "addNew": "Add new course participant"
+        },
+        "form":{
+            "select": {
+                "client": "--- Choose client ---",
+                "course": "--- Choose course ---"
+            },
+            "details": {
+                "title": "Details of participation in the course"
+            },
+            "add": {
+                "title": "Add participant to the course"
+            },
+            "edit": {
+                "title": "Edit course attendance"
+            },
+            "payments": {
+                "title": "Payment records",
+                "noRecords": "There are no assigned payments"
+            }
+        },
+        "errors":{
+            "client": {
+                "required": "Client is required"
+            },
+            "course": {
+                "required": "Course is required"
+            },
+            "dateJoining": {
+                "required": "Join date is required"
+            },
+            "noRecord": "No participation in the database",
+            "unknown": "Unknown error"
+        },
+        "alerts": {
+            "addedNew": "Client was enrolled in the course",
+            "updated": "Course participation data has been updated",
+            "deleted": "Client has been removed from the course",
+            "questionDelete": "Are you sure you want to delete the record "
+        }
+    },
+    "clientCourse": {
+		"fields": {
+			"client": "Client",
+			"course": "Course",
+            "dateJoining": "Join date",
+			"certificate": "Certificate"
+		}
+    },
+    "payment-page" :{
+        "list": {
+            "title": "Payment list",
+            "noRecords": "No payments",
+            "addNew": "Add new payment"
+        },
+        "form":{
+            "select": {
+                "method": "--- Choose payment method ---",
+                "status": "--- Choose payment status ---"
+            },
+            "add": {
+                "title": "Add payment from "
+            },
+            "edit": {
+                "title": "Edit payment from "
+            }
+        },
+        "errors":{
+            "amount": {
+                "required": "Amount is required",
+                "pattern": "Wrong format. Correct format, e.g. 120.3"
+            },
+            "course": {
+                "required": "Course is required"
+            },
+            "date": {
+                "required": "Payment date is required"
+            },
+            "status": {
+                "required": "Payment status is required"
+            },
+            "method": {
+                "required": "Payment method is required"
+            }
+        },
+        "alerts": {
+            "addedNew": "Added new payment",
+            "updated": "Updated payment"
+        }
+    },
+    "payment": {
+        "fields": {
+            "amount": "Amount",
+            "date": "Payment date",
+            "status": "Payment status",
+            "method": "Payment method",
+            "paymentStatus": {
+                "confirmed": "Confirmed",
+                "unsuccessful": "Unsuccessful",
+                "duringVerification": "During the verification",
+                "returned": "Returned",
+                "return": "Return"
+            },
+            "paymentMethod": {
+                "cash": "Cash",
+                "card": "Card",
+                "transfer": "Bank transfer"
+            }
+        }
+    },
+    "list": {
+        "noRecords": "No records to display",
+        "actions":{
+            "title": "Actions",
+            "details": "Details",
+            "edit": "Edit", 
+            "delete": "Delete",
+            "payments": "Payments"
+        }
+    },
+    "form": {
+        "actions": {
+            "edit": "Edit",
+            "cancel": "Cancel",
+            "return": "Return",
+            "btnLabel": {
+                "add": "Add",
+                "save": "Save"
+            }
+        }
+    },
+    "httpErros": {
+        "400": "Bad request",
+        "401": "You must be logged in",
+        "403": "You do not have sufficient permissions",
+        "404": "Resource not found",
+        "500": "Server error",
+        "default": "Unknown error",
+        "tokenExpired": "Your session has expired"
+    },
+    "allerts": {
+        "logOut": "Successfully logged out"
+    }
+}

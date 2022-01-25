@@ -1,0 +1,40 @@
+<main>
+    <h2 *ngIf="payments && payments.length > 0">{{ 'payment-page.list.title' | translate }} {{payments[0].clientCourse.client.firstName + ' ' + payments[0].clientCourse.client.lastName }}</h2>
+    <div class="tpc table-form" *ngIf="payments && payments.length > 0;else noPayments">
+        <table class="table-list" >
+            <thead>
+                <tr>
+                    <th>{{ 'clientCourse.fields.course' | translate }}</th>
+                    <th>{{ 'payment.fields.amount' | translate }}</th>
+                    <th>{{ 'payment.fields.date' | translate }}</th>
+                    <th>{{ 'payment.fields.status' | translate }}</th>
+                    <th>{{ 'payment.fields.method' | translate }}</th>
+                    <th *ngIf="authGuard.isAdmin()">{{ 'list.actions.title' | translate }}</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td><a routerLink="/courses/details/{{payment.clientCourse.course.id}}"> {{payment.clientCourse.course.name}} </a></td>
+                <td>{{payment.amount}}</td>
+                <td>{{payment.date}}</td>
+                <td>{{ ('payment.fields.paymentStatus.' + this.paymentStatusEnum[payment.paymentStatus.id]) | translate }}</td>
+                <td>{{ ('payment.fields.paymentMethod.' + this.paymentMethodEnum[payment.paymentMethod.id]) | translate }}</td>
+            <td *ngIf="authGuard.isAdmin()">
+                <ul class="list-actions">
+                    <li>
+                        <a routerLink="/payments/edit/{{payment.id}}/client/{{payment.clientCourse.client.id}}" class="list-actions-button-edit">
+                            <img alt="{{ 'list.actions.edit' | translate }}" src="./../../../assets/images/edit.png">
+                        </a>
+                    </li>
+                </ul>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <ng-template #noPayments>
+        <p>{{ 'payment-page.list.noRecords' | translate }}</p>
+    </ng-template>
+    <a routerLink="/payments/add/client/{{idClient}}" class="button-add" *ngIf="coursesAssigned">{{ 'payment-page.list.addNew' | translate }}</a>
+    <a routerLink="/clients" class="button-return" *ngIf="authGuard.isAdmin()">{{'form.actions.return' | translate}}</a>   
+</main>

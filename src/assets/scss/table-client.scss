@@ -1,0 +1,70 @@
+@media all and (max-width: 400px) {
+    table, thead, tbody{
+        display: flex;
+        flex-direction: column;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    td { 
+		display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        white-space: nowrap;
+	}
+
+    td.pl-PL:nth-of-type(1)::before{
+        content: "Imię:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+
+    td.en-GB:nth-of-type(1)::before{
+        content: "First name:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+    
+    td.pl-PL:nth-of-type(2)::before{
+        content: "Nazwisko:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+
+    td.en-GB:nth-of-type(2)::before{
+        content: "Last name:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+
+    td.pl-PL:nth-of-type(3)::before{
+        content: "Numer telefonu:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+
+    td.en-GB:nth-of-type(3)::before{
+        content: "Phone number:";
+        font-weight: bold;
+        padding-right: 1em;
+    }
+
+    td:nth-of-type(4){
+        justify-content: center;
+    }
+
+    .list-actions {
+        display: flex;
+        flex-direction: row;
+    }
+
+    tbody tr{
+        border-bottom: 3px #F6F6F6 solid;
+    }
+
+    .table-list {
+        width: 100%;
+    }
+}

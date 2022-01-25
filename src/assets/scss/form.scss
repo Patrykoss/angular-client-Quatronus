@@ -1,0 +1,153 @@
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #f6f6f6;
+  text-decoration: none;
+}
+
+textarea {
+  overflow: auto;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 150px 300px 1fr;
+  row-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form label {
+  grid-column: 1;
+  font-size: inherit;
+}
+
+.form select,
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="email"],
+.form input[type="tel"] {
+  border: 1px solid #7f8c8d;
+  color: #f6f6f6;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #333d42;
+  outline: none;
+  grid-column: 2;
+}
+
+.form input:focus,
+.form select:focus {
+  border: 2px solid #7f8c8d;
+}
+
+.form input.error-input,
+.form select.error-input {
+  border: 3px solid #e74c3c;
+}
+
+.errors-text {
+  display: block;
+  font-size: 0.85em;
+  line-height: 2.25rem;
+  margin-left: 1em;
+  grid-column: 3;
+}
+
+#errorsSummary,
+.errors-text,
+.symbol-required {
+  color: #e74c3c;
+}
+
+.form label {
+  color: #f6f6f6;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5em;
+}
+
+.form-buttons {
+  margin-top: 2rem;
+  grid-column: 1 / span 2;
+}
+
+.form-button-submit,
+.form-button-cancel {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  color: #f6f6f6;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.form-button-submit {
+  cursor: default;
+  background-color: #333d42; 
+  margin-bottom: 0.5rem;
+}
+
+
+.button-confirm:hover {
+  background-color: #2ecc71;
+}
+
+.valid-form {
+  background-color: #27ae60;
+  cursor: pointer;
+}
+
+.valid-form:hover,
+.button-confirm:hover {
+  background-color: #2ecc71;
+}
+
+.form-button-cancel {
+  background-color: #c0392b;
+  box-sizing: border-box;
+  display: block;
+}
+
+.form-button-cancel:hover {
+  background-color: #e74c3c;
+}
+
+@media all and (max-width: 720px) {
+  .form {
+    grid-template-columns: 1fr;
+    row-gap: unset;
+    margin-left: unset;
+  }
+
+  .form-buttons {
+    grid-column: 1 / 1;
+  }
+
+  .form label {
+    grid-column: unset;
+  }
+
+  .form select,
+  .form input[type="text"],
+  .form input[type="date"],
+  .form input[type="email"],
+  .form input[type="tel"] {
+    grid-column: unset;
+  }
+
+  .errors-text {
+    margin-left: 0em;
+    grid-column: unset;
+  }
+}

@@ -1,0 +1,46 @@
+<main>
+    <h2>{{ 'clientCourse-page.list.title' | translate }}</h2>
+    <div class="tpc" *ngIf="clientsCourses.length > 0;else noClientsCourses">
+        <table class="table-list" >
+            <thead>
+                <tr>
+                    <th>{{ 'client.fields.firstName' | translate }}</th>
+                    <th>{{ 'client.fields.lastName' | translate }}</th>
+                    <th>{{ 'clientCourse.fields.course' | translate }}</th>
+                    <th>{{ 'list.actions.title' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let clientCourse of clientsCourses">
+                    <td class="{{getLang()}}">{{clientCourse.client.firstName}}</td>
+                    <td class="{{getLang()}}">{{clientCourse.client.lastName}}</td>
+                    <td class="{{getLang()}}">{{clientCourse.course.name}}</td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a routerLink="/clientCourse/details/{{clientCourse.id}}" class="list-actions-button-details">
+                                    <img alt="{{ 'list.actions.details' | translate }}" src="./../../../assets/images/info.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/clientCourse/edit/{{clientCourse.id}}" class="list-actions-button-edit">
+                                    <img alt="{{ 'list.actions.edit' | translate }}" src="./../../../assets/images/edit.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="askBeforeDelete(clientCourse)" class="list-actions-button-delete">
+                                    <img alt="{{ 'list.actions.delete' | translate }}" src="./../../../assets/images/delete.png">
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noClientsCourses>
+        <p>{{ 'list.noRecords' | translate }}</p>
+    </ng-template>
+
+    <a routerLink="/clientCourse/add" class="button-add">{{ 'clientCourse-page.list.addNew' | translate }}</a>
+</main>

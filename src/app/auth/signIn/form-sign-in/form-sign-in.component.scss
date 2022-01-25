@@ -1,0 +1,16 @@
+.form input[type="password"] {
+  border: 1px solid #7f8c8d;
+  color: #f6f6f6;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #333d42;
+  outline: none;
+  grid-column: 2;
+}
+
+.signIn-panel {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}

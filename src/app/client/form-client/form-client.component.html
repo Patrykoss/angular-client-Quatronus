@@ -1,0 +1,109 @@
+<main>
+    <h2 *ngIf="authGuard.isUser();else noUser">{{'client-page.form.profile.title' | translate}}</h2>
+    <ng-template #noUser>
+        <h2>{{formType == 0?('client-page.form.details.title' | translate) :formType == 1?('client-page.form.add.title' | translate):('client-page.form.edit.title' | translate)}}</h2>
+    </ng-template>
+        <form class="form" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" name="id" formControlName="id">
+
+            <label for="firstName">{{ 'client.fields.firstName' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="firstName" id="firstName" formControlName="firstName">
+            <span id="errorFirstName" class="errors-text" *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.errors && (clientForm.get('firstName')?.dirty || clientForm.get('firstName')?.touched)">
+                <div *ngIf="clientForm.get('firstName')?.hasError('required')">
+                    {{'client-page.errors.firstName.required' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('firstName')?.hasError('minlength')">
+                    {{'client-page.errors.firstName.length' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('firstName')?.hasError('maxlength')">
+                    {{'client-page.errors.firstName.length' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('firstName')?.hasError('pattern')">
+                    {{'client-page.errors.firstName.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="lastName">{{ 'client.fields.lastName' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="lastName" id="lastName" formControlName="lastName">
+            <span id="errorLastName" class="errors-text" *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.errors && (clientForm.get('lastName')?.dirty || clientForm.get('lastName')?.touched)">
+                <div *ngIf="clientForm.get('lastName')?.hasError('required')">
+                    {{'client-page.errors.lastName.required' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('lastName')?.hasError('minlength')">
+                    {{'client-page.errors.lastName.length' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('lastName')?.hasError('maxlength')">
+                    {{'client-page.errors.lastName.length' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('lastName')?.hasError('pattern')">
+                    {{'client-page.errors.lastName.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="phoneNumber">{{ 'client.fields.phoneNumber' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" [placeholder]="('client-page.form.placeholder.phoneNumber' | translate)">
+            <span id="errorPhoneNumber" class="errors-text" *ngIf="clientForm.get('phoneNumber')?.invalid && clientForm.get('phoneNumber')?.errors && (clientForm.get('phoneNumber')?.dirty || clientForm.get('phoneNumber')?.touched)">
+                <div *ngIf="clientForm.get('phoneNumber')?.hasError('required')">
+                    {{'client-page.errors.phoneNumber.required' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('phoneNumber')?.hasError('pattern')">
+                    {{'client-page.errors.phoneNumber.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="email">{{ 'client.fields.email' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="email" name="email" id="email" formControlName="email" autocomplete="email" (ngModelChange)="checkAvailability($event)" [placeholder]="('client-page.form.placeholder.email' | translate)">
+            <span id="errorEmail" class="errors-text" *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.errors && (clientForm.get('email')?.dirty || clientForm.get('email')?.touched)">
+                <div *ngIf="clientForm.get('email')?.hasError('required')">
+                    {{'client-page.errors.email.required' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('email')?.hasError('maxlength')">
+                    {{'client-page.errors.email.length' | translate}}
+                </div>
+                <div *ngIf="clientForm.get('email')?.hasError('pattern')">
+                    {{'client-page.errors.email.pattern' | translate}}
+                </div>         
+            </span>
+            <span id="errorEmail" class="errors-text" *ngIf="!emailAvailability">
+                {{'client-page.errors.email.availability' | translate}}
+            </span>
+        
+            <div class="form-buttons" *ngIf="formType == 0;else otherForm">
+                <a routerLink="/clients/edit/{{client?.id}}" class="button-edit">{{'form.actions.edit' | translate}}</a>
+            </div>
+            <ng-template #otherForm>
+                <div class="form-buttons">
+                    <p id="errorsSummary"></p>
+                    <button type="submit" class="form-button-submit" [ngClass]="{'valid-form': clientForm.valid && emailAvailability}" [disabled]="clientForm.invalid || !emailAvailability">
+                        {{formType == 1?('form.actions.btnLabel.add' | translate) : ('form.actions.btnLabel.save' | translate)}}
+                    </button>
+                    <a routerLink="/clients" class="form-button-cancel">{{'form.actions.cancel' | translate}}</a>
+                </div>
+            </ng-template>
+        </form>
+
+    <div *ngIf="formType == 0 && client">
+        <h2>{{client.clientCourse.length > 0? ('client-page.form.courses.title' | translate) : ('client-page.form.courses.noRecords' | translate) }}</h2>
+        <div class="table-form">
+            <table *ngIf="client.clientCourse.length > 0" class="table-list">
+                <thead>
+                    <tr>
+                        <th>{{'clientCourse.fields.course' | translate}}</th>
+                        <th>{{'clientCourse.fields.dateJoining' | translate}}</th>
+                        <th>{{ 'clientCourse.fields.certificate' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr *ngFor="let cc of client.clientCourse">
+                            <td><a routerLink="/courses/details/{{cc.course.id}}">{{cc.course.name}}</a></td>
+                            <td>{{cc.dateJoining}}</td>
+                            <td class="certificate-info"><input type="checkbox" name="getCertificate" [checked]="cc.getCertificate" disabled></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <a routerLink="/clientCourse/add" class="button-add-small" [queryParams]="{ idClient: client.id}" *ngIf="authGuard.isAdmin()"> {{'client-page.form.course.assign' | translate}} </a>
+        <a routerLink="/clients" class="button-return" *ngIf="!authGuard.isUser()">{{'form.actions.return' | translate}}</a>
+    </div>
+</main>

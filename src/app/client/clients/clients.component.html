@@ -1,0 +1,51 @@
+<main *ngIf="clients">
+    <h2>{{ 'client-page.list.title' | translate }}</h2>
+    <div class="tpc" *ngIf="clients.length > 0;else noClients">
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>{{ 'client.fields.firstName' | translate }}</th>
+                    <th>{{ 'client.fields.lastName' | translate }}</th>
+                    <th>{{ 'client.fields.phoneNumber' | translate }}</th>
+                    <th>{{ 'list.actions.title' | translate }}</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td class="{{getLang()}}">{{client.firstName}}</td>
+                <td class="{{getLang()}}">{{client.lastName}}</td>
+                <td class="{{getLang()}}">{{client.phoneNumber}}</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a routerLink="/clients/details/{{client.id}}" class="list-actions-button-details">
+                            <img alt="{{ 'list.actions.details' | translate }}" src="./../../../assets/images/info.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/clients/{{client.id}}/payments" class="list-actions-button-payments">
+                            <img alt="{{ 'list.actions.payments' | translate }}"  src="./../../../assets/images/cash.svg">
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/clients/edit/{{client.id}}" class="list-actions-button-edit">
+                            <img alt="{{ 'list.actions.edit' | translate }}" src="./../../../assets/images/edit.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="askBeforeDelete(client)" class="list-actions-button-delete">
+                            <img alt="{{ 'list.actions.delete' | translate }}" src="./../../../assets/images/delete.png">
+                        </a>
+                    </li>
+                </ul>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <ng-template #noClients>
+        <p>{{ 'list.noRecords' | translate }}</p>
+    </ng-template>
+    <a routerLink="/clients/add" class="button-add">{{ 'client-page.list.addNew' | translate }}</a>
+
+</main>

@@ -1,0 +1,317 @@
+{
+    "nav-bar": {
+        "home": "Strona główna",
+        "clients": "Klienci",
+        "courses": "Kursy",
+        "clientCourse": "Zapisy",
+        "profile": "Profil",
+        "payments": "Płatności"
+    },
+    "header": {
+        "logIn": "Zaloguj się",
+        "register": "Zarejestruj się",
+        "logOut": "Wyloguj",
+        "user": "Użytkownik",
+        "admin": "Administrator"
+    },
+    "home-page": {
+        "title": "Strona główna"
+    },
+    "auth-page": {
+        "form": {
+            "title": "Zarejestruj się",
+            "password": "Hasło"
+        },
+        "errors": {
+            "password": {
+                "required": "Hasło jest wymagane",
+                "pattern": "Minimum osiem znaków, co najmniej jedna litera i jedna cyfra"
+            },
+            "invalidCredentials": "Nieprawidłowe dane uwierzytelniające",
+            "unknown": "Nieznany błąd"
+        },
+        "alerts": {
+            "loggedIn": "Zalogowano",
+            "registered": "Konto utworzone",
+            "unregistered": "Konto nie zostało utworzone"
+        }
+    },
+    "client-page": {
+        "list":{
+            "title": "Lista klientów",
+            "addNew": "Dodaj nowego klienta"
+        },
+        "form":{
+            "details": {
+                "title": "Szczegóły klienta"
+            },
+            "add": {
+                "title": "Dodaj klienta"
+            },
+            "edit": {
+                "title": "Edytuj klienta"
+            },
+            "courses": {
+                "title": "Szczegóły uczestnictwa w kursach",
+                "noRecords": "Brak przypisanych kursów"
+            },
+            "placeholder": {
+                "phoneNumber": "np. 662137997",
+                "email": "np. nazwa@domena.pl"
+            },
+            "profile": {
+                "title": "Dane"
+            },
+            "course": {
+                "assign": "Przypisz kurs"
+            }
+        },
+        "errors":{
+            "firstName": {
+                "required": "Imię jest wymagane",
+                "length": "Imię powinno zawierać od 2 do 20 znaków",
+                "pattern": "Imię musi składać się tylko z liter"
+            },
+            "lastName": {
+                "required": "Nazwisko jest wymagane",
+                "length": "Nazwisko powinno zawierać od 2 do 20 znaków",
+                "pattern": "Nazwisko musi składać się tylko z liter"
+            },
+            "phoneNumber": {
+                "required": "Numer telefonu jest wymagany",
+                "pattern": "Numer telefonu składa się z 9 cyfr"
+            },
+            "email": {
+                "required": "Email jest wymagany",
+                "length": "Email powinnien zawierać nie więcej niż 40 znaków",
+                "pattern": "Pole powinno zawierać prawidłowy adres email",
+                "availability": "Wybrany email jest zajęty"
+            },
+            "noRecord": "Brak klienta w bazie",
+            "unknown": "Nieznany błąd"
+        },
+        "alerts": {
+            "addedNew": "Dodano klienta",
+            "updated": "Zaktualizowano dane klienta",
+            "deleted": "Usunięto klienta",
+            "questionDelete": "Czy na pewno chcesz usunąć rekord "
+        }
+    },
+    "client": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+            "phoneNumber": "Numer telefonu",
+			"email": "Email"
+		}
+    },
+    "course-page": {
+        "list":{
+            "title": "Lista kursów",
+            "addNew": "Dodaj nowy kurs"
+        },
+        "form":{
+            "details": {
+                "title": "Szczegóły kursu"
+            },
+            "add": {
+                "title": "Dodaj kurs"
+            },
+            "edit": {
+                "title": "Edytuj kurs"
+            },
+            "clients": {
+                "title": "Lista uczestników kursu",
+                "noRecords": "Brak przypisanych uczestników"
+            },
+            "placeholder": {
+                "name": "2-70 znaków",
+                "description": "10-200 znaków"
+            },
+            "client": {
+                "assign": "Przypisz uczestnika"
+            }
+            
+        },
+        "errors":{
+            "name": {
+                "required": "Nazwa kursu jest wymagana",
+                "length": "Nazwa kursu powinna zawierać od 2 do 20 znaków"
+            },
+            "description": {
+                "required": "Opis kursu jest wymagany",
+                "length": "Opis kursu powinnien zawierać od 10 do 200 znaków"
+            },
+            "startDate": {
+                "required": "Numer telefonu jest wymagany",
+                "invalid": "Data rozpoczęcia musi być póżniejsza od daty dzisiejszej"
+            },
+            "endDate": {
+                "after": "Data zakończenia musi być póżniejsza od daty rozpoczęcia",
+                "invalid": "Należy wpierw wprowadzić datę rozpoczęcia"
+            },
+            "noRecord": "Brak kursu w bazie",
+            "unknown": "Nieznany błąd"
+        },
+        "alerts": {
+            "addedNew": "Dodano kurs",
+            "updated": "Zaktualizowano dane kursu",
+            "deleted": "Usunięto kurs",
+            "questionDelete": "Czy na pewno chcesz usunąć rekord "
+        }
+    },
+    "course": {
+		"fields": {
+			"name": "Nazwa",
+			"description": "Opis",
+            "startDate": "Data rozpoczęcia",
+			"endDate": "Data zakończenia"
+		}
+    },
+    "clientCourse-page": {
+        "list":{
+            "title": "Lista zapisanych klientów na kursy",
+            "addNew": "Dodaj nowego uczestnika kursu"
+        },
+        "form":{
+            "select": {
+                "client": "--- Wybierz klienta ---",
+                "course": "--- Wybierz kurs ---"
+            },
+            "details": {
+                "title": "Szczegóły uczestnictwa w kursie"
+            },
+            "add": {
+                "title": "Dodaj uczestnika do kursu"
+            },
+            "edit": {
+                "title": "Edytuj uczestnictwo w kursie"
+            },
+            "payments": {
+                "title": "Lista płatności za kurs",
+                "noRecords": "Brak przypisanych płatności"
+            }
+        },
+        "errors":{
+            "client": {
+                "required": "Klient jest wymagany"
+            },
+            "course": {
+                "required": "Kurs jest wymagany"
+            },
+            "dateJoining": {
+                "required": "Data dołączenia jest wymagana"
+            },
+            "noRecord": "Brak uczestnictwa w bazie",
+            "unknown": "Nieznany błąd"
+        },
+        "alerts": {
+            "addedNew": "Zapisano klienta na kurs",
+            "updated": "Zaktualizowano dane uczestnictwa w kursie",
+            "deleted": "Usunięto klienta z kursu",
+            "questionDelete": "Czy na pewno chcesz usunąć rekord "
+        }
+    },
+    "clientCourse": {
+		"fields": {
+			"client": "Klient",
+			"course": "Kurs",
+            "dateJoining": "Data dołączenia",
+			"certificate": "Certyfikat"
+		}
+    },
+    "payment-page" :{
+        "list": {
+            "title": "Lista wpłat",
+            "noRecords": "Brak wpłat",
+            "addNew": "Dodaj nową wpłatę"
+        },
+        "form":{
+            "select": {
+                "method": "--- Wybierz metodę płatności ---",
+                "status": "--- Wybierz status płatności ---"
+            },
+            "add": {
+                "title": "Dodaj wpłatę od "
+            },
+            "edit": {
+                "title": "Edytuj wpłatę od "
+            }
+        },
+        "errors":{
+            "amount": {
+                "required": "Kwota wpłaty jest wymagana",
+                "pattern": "Zły format. Poprawny format np 120.3"
+            },
+            "course": {
+                "required": "Kurs jest wymagany"
+            },
+            "date": {
+                "required": "Data płatności jest wymagana"
+            },
+            "status": {
+                "required": "Status płatności jest wymagany"
+            },
+            "method": {
+                "required": "Metoda płatności jest wymagana"
+            }
+        },
+        "alerts": {
+            "addedNew": "Dodano nową wpłatę",
+            "updated": "Zaktualizowano wpłatę"
+        }
+    },
+    "payment": {
+        "fields": {
+            "amount": "Kwota",
+            "date": "Data płatności",
+            "status": "Status płatności",
+            "method": "Metoda płatności",
+            "paymentStatus": {
+                "confirmed": "Zatwierdzona",
+                "unsuccessful": "Nieudana",
+                "duringVerification": "W trakcie weryfikacji",
+                "returned": "Zwrócona",
+                "return": "Zwrot"
+            },
+            "paymentMethod": {
+                "cash": "Gotówka",
+                "card": "Karta",
+                "transfer": "Przelew"
+            }
+        }
+    },
+    "list": {
+        "noRecords": "Brak rekordów do wyświetlenia",
+        "actions":{
+            "title": "Akcje",
+            "details": "Szczegóły",
+            "edit": "Edytuj", 
+            "delete": "Usuń",
+            "payments": "Płatności"
+        }
+    },
+    "form": {
+        "actions": {
+            "edit": "Edytuj",
+            "cancel": "Anuluj",
+            "return": "Powrót",
+            "btnLabel": {
+                "add": "Dodaj",
+                "save": "Zapisz"
+            }
+        }
+    },
+    "httpErros": {
+        "400": "Błędnie zapytanie",
+        "401": "Musisz być zalogowany",
+        "403": "Brak wystarczających uprawnień",
+        "404": "Nie znaleziono zasobu",
+        "500": "Błąd serwera",
+        "default": "Nieznany błąd",
+        "tokenExpired": "Twoja sesja wygasła"
+    },
+    "allerts": {
+        "logOut": "Pomyślnie wylogowano"
+    }
+}

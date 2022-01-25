@@ -1,0 +1,33 @@
+<main>
+    <div class="signIn-panel">
+        <h2>
+            {{'header.logIn' | translate}}
+        </h2>
+        <form class="form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+            <label for="email">{{ 'client.fields.email' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="email" name="email" id="email" formControlName="email" autocomplete="email" [placeholder]="('client-page.form.placeholder.email' | translate)">
+            <span id="errorEmail" class="errors-text" *ngIf="signInForm.get('email')?.invalid && signInForm.get('email')?.errors && (signInForm.get('email')?.dirty || signInForm.get('email')?.touched)">
+                <div *ngIf="signInForm.get('email')?.hasError('required')">
+                    {{'client-page.errors.email.required' | translate}}
+                </div>       
+            </span>
+
+            <label for="password">{{ 'auth-page.form.password' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="password" name="password" id="password" formControlName="password">
+            <span id="errorPassword" class="errors-text" *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.errors && (signInForm.get('password')?.dirty || signInForm.get('password')?.touched)">
+                <div *ngIf="signInForm.get('password')?.hasError('required')">
+                    {{'auth-page.errors.password.required' | translate}}
+                </div>
+            </span>
+
+            <div class="form-buttons">
+                <button type="submit" class="form-button-submit" [ngClass]="{'valid-form': signInForm.valid}" [disabled]="signInForm.invalid">
+                    {{'header.logIn' | translate}}
+                </button>
+                <a routerLink="/register" class="form-button-cancel">{{ 'auth-page.form.title' | translate }}</a>
+            </div> 
+        </form>  
+    </div>
+    
+      
+</main>

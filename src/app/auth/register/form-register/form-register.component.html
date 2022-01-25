@@ -1,0 +1,86 @@
+<main>
+    <h2>{{ 'auth-page.form.title' | translate }}</h2>
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <label for="firstName">{{ 'client.fields.firstName' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="firstName" id="firstName" formControlName="firstName">
+            <span id="errorFirstName" class="errors-text" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.dirty || registerForm.get('firstName')?.touched)">
+                <div *ngIf="registerForm.get('firstName')?.hasError('required')">
+                    {{'client-page.errors.firstName.required' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('firstName')?.hasError('minlength')">
+                    {{'client-page.errors.firstName.length' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('firstName')?.hasError('maxlength')">
+                    {{'client-page.errors.firstName.length' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('firstName')?.hasError('pattern')">
+                    {{'client-page.errors.firstName.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="lastName">{{ 'client.fields.lastName' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="lastName" id="lastName" formControlName="lastName" >
+            <span id="errorLastName" class="errors-text" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.errors && (registerForm.get('lastName')?.dirty || registerForm.get('lastName')?.touched)">
+                <div *ngIf="registerForm.get('lastName')?.hasError('required')">
+                    {{'client-page.errors.lastName.required' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('lastName')?.hasError('minlength')">
+                    {{'client-page.errors.lastName.length' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('lastName')?.hasError('maxlength')">
+                    {{'client-page.errors.lastName.length' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('lastName')?.hasError('pattern')">
+                    {{'client-page.errors.lastName.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="phoneNumber">{{ 'client.fields.phoneNumber' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" [placeholder]="('client-page.form.placeholder.phoneNumber' | translate)">
+            <span id="errorPhoneNumber" class="errors-text" *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.errors && (registerForm.get('phoneNumber')?.dirty || registerForm.get('phoneNumber')?.touched)">
+                <div *ngIf="registerForm.get('phoneNumber')?.hasError('required')">
+                    {{'client-page.errors.phoneNumber.required' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">
+                    {{'client-page.errors.phoneNumber.pattern' | translate}}
+                </div>
+            </span>
+    
+            <label for="email">{{ 'client.fields.email' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="email" name="email" id="email" formControlName="email" autocomplete="email" (ngModelChange)="checkAvailability($event)" [placeholder]="('client-page.form.placeholder.email' | translate)">
+            <span id="errorEmail" class="errors-text" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.errors && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                <div *ngIf="registerForm.get('email')?.hasError('required')">
+                    {{'client-page.errors.email.required' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('email')?.hasError('maxlength')">
+                    {{'client-page.errors.email.length' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('email')?.hasError('pattern')">
+                    {{'client-page.errors.email.pattern' | translate}}
+                </div>         
+            </span>
+            <span id="errorEmail" class="errors-text" *ngIf="!emailAvailability">
+                {{'client-page.errors.email.availability' | translate}}
+            </span>
+
+            <label for="password">{{ 'auth-page.form.password' | translate }}: <span class="symbol-required">*</span></label>
+            <input type="text" name="password" id="password" formControlName="password">
+            <span id="errorPassword" class="errors-text" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.errors && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                <div *ngIf="registerForm.get('password')?.hasError('required')">
+                    {{'auth-page.errors.password.required' | translate}}
+                </div>
+                <div *ngIf="registerForm.get('password')?.hasError('pattern')">
+                    {{'auth-page.errors.password.pattern' | translate}}
+                </div>
+            </span>
+        
+            <div class="form-buttons">
+                <p id="errorsSummary"></p>
+                <button type="submit" class="form-button-submit" [ngClass]="{'valid-form': registerForm.valid && emailAvailability}" [disabled]="registerForm.invalid || !emailAvailability">
+                    {{ 'auth-page.form.title' | translate }}
+                </button>
+                <a routerLink="/" class="form-button-cancel">{{'form.actions.cancel' | translate}}</a>
+            </div>  
+            
+        </form>
+</main>
