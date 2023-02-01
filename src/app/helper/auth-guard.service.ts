@@ -16,19 +16,8 @@ export class AuthGuardService implements CanActivate {
             return true;
         }
         const role = localStorage.getItem('role');
-        if(!role){
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('role');
-            localStorage.removeItem('userName');
-            localStorage.removeItem('idClient');
-            this._toastr.error('', this._translateService.instant('httpErros.401'), {
-                timeOut: 3000,
-                positionClass: 'toast-bottom-right' });
-            this._router.navigate(['signIn']);
-            return false;
-        }
         const token = localStorage.getItem('accessToken');
-        if(!token){
+        if(!role || !token){
             localStorage.removeItem('accessToken');
             localStorage.removeItem('role');
             localStorage.removeItem('userName');
@@ -39,6 +28,7 @@ export class AuthGuardService implements CanActivate {
             this._router.navigate(['signIn']);
             return false;
         }
+        
         let hasAccess = false;
         for(let r of expectedRole){
             if(r == role)
